@@ -18,44 +18,35 @@ public class Eratosthenes {
      */
     public static void main(String[] args) {
         ArrayList<Integer> prime = new ArrayList();
-        ArrayList<Integer> multiples = new ArrayList();
+        ArrayList<Integer> num = new ArrayList();
+
+        int test = 0;
+        int u = 2;
+       
         
-        int num = 2;
-        int test;
-        boolean yes = true;
         
         for(int k = 0; k <= 1000; k++){
             prime.add(k);
+            num.add(k);
         }
+        
         do{
-            System.out.println(num);
-            for(int i = 0; i < 500; i++){
-                multiples.add(num*(num + i));
-                if(multiples.get(i) > 1000){
-                    break;
-                }
-            }
-
-            for(int u = 0; u < multiples.size(); u++){
-                boolean remove = prime.remove(multiples.get(u));
-
-            }
-
-            do{
-                num++;
-                if(yes != prime.contains(num)){
-                    
-                    multiples.clear();
-                    yes = true;
-                    
-                }
-                else{
-                    yes = false;
-                }
-            }while(yes == false);
-            yes = false;
             
-        }while (num < 500);
+            for(int i = 0; i < 500; i++){
+                test = num.get(u) * (num.get(u) + i);
+                
+                
+                if(prime.contains(test)){
+                    prime.remove(prime.indexOf(test));
+                    num.remove(num.indexOf(test));
+                }
+                if(test > 1000){
+                   break;
+                }
+                
+            }
+            u++;
+        }while (num.get(u) < 500);
         System.out.println(prime);
     }
         
